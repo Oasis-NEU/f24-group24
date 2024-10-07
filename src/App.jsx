@@ -2,7 +2,7 @@ import { useState } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
+import Homepage from './pages/Home/Homepage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +11,7 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
+        <Route path="/" element={<Homepage/>}></Route>
       </Routes>
     </Router>
     </>
