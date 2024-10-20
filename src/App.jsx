@@ -6,8 +6,6 @@ import Aboutpage from './pages/About/Aboutpage'
 import RestaurantPage from './pages/Restaurant/RestaurantPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
     <Router>
