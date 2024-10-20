@@ -24,7 +24,8 @@ function RestaurantPage() {
         <button
           onClick={toggleHuskyDollars}
           style={{
-            backgroundColor: huskyDollarsSelected ? 'lightblue' : 'white',
+            backgroundColor: huskyDollarsSelected ? 'orange' : 'white',
+            color: 'black',
             border: '1px solid black',
             marginRight: '10px',
           }}
@@ -34,7 +35,8 @@ function RestaurantPage() {
         <button
           onClick={toggleStudentDiscount}
           style={{
-            backgroundColor: studentDiscountSelected ? 'lightblue' : 'white',
+            backgroundColor: studentDiscountSelected ? 'orange' : 'white',
+            color: 'black',
             border: '1px solid black',
           }}
         >
