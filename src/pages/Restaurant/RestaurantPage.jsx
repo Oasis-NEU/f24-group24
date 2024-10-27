@@ -5,6 +5,7 @@ import RestaurantModal from '../../components/Restaurant/RestaurantModal';
 function RestaurantPage() {
   const [huskyDollarsSelected, setHuskyDollarsSelected] = useState(false);
   const [studentDiscountSelected, setStudentDiscountSelected] = useState(false);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null)
 
   // Toggle Husky Dollars filter
   const toggleHuskyDollars = () => {
@@ -18,7 +19,10 @@ function RestaurantPage() {
 
   // Open modal for selected restaurant
   const handleRestaurantClick = (restaurant) => {
-    setSelectedRestaurant(restaurant);
+    setSelectedRestaurant({
+      ...restaurant,
+      id: restaurant.id.toString(), // Ensure ID is a string
+    });
   };
 
   // Close modal
@@ -59,6 +63,7 @@ function RestaurantPage() {
       <RestaurantList
         huskyDollarsSelected={huskyDollarsSelected}
         studentDiscountSelected={studentDiscountSelected}
+        onRestaurantClick={handleRestaurantClick}
       />
 
       {/* Display modal if a restaurant is selected */}
