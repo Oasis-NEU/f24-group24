@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RestaurantDetails from './RestaurantDetails';
 import mockRestaurants from '../../data/mockRestaurants';
 
-function RestaurantList({ huskyDollarsSelected, studentDiscountSelected }) {
+function RestaurantList({ huskyDollarsSelected, studentDiscountSelected, onRestaurantClick }) {
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   
     useEffect(() => {
@@ -29,7 +29,9 @@ function RestaurantList({ huskyDollarsSelected, studentDiscountSelected }) {
         <div>
           {filteredRestaurants.length > 0 ? (
             filteredRestaurants.map((restaurant) => (
-              <RestaurantDetails key={restaurant.id} restaurant={restaurant} />
+              <div key={restaurant.id} onClick={() => onRestaurantClick(restaurant)}>
+                <RestaurantDetails restaurant={restaurant} />
+              </div>
             ))
           ) : (
             <p>No restaurants found matching the selected criteria.</p>

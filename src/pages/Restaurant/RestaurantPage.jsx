@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RestaurantList from '../../components/Restaurant/RestaurantList';
+import RestaurantModal from '../../components/Restaurant/RestaurantModal';
 
 function RestaurantPage() {
   const [huskyDollarsSelected, setHuskyDollarsSelected] = useState(false);
@@ -13,6 +14,16 @@ function RestaurantPage() {
   // Toggle Student Discount filter
   const toggleStudentDiscount = () => {
     setStudentDiscountSelected(!studentDiscountSelected);
+  };
+
+  // Open modal for selected restaurant
+  const handleRestaurantClick = (restaurant) => {
+    setSelectedRestaurant(restaurant);
+  };
+
+  // Close modal
+  const handleCloseModal = () => {
+    setSelectedRestaurant(null);
   };
 
   return (
@@ -49,6 +60,14 @@ function RestaurantPage() {
         huskyDollarsSelected={huskyDollarsSelected}
         studentDiscountSelected={studentDiscountSelected}
       />
+
+      {/* Display modal if a restaurant is selected */}
+      {selectedRestaurant && (
+        <RestaurantModal
+          restaurant={selectedRestaurant}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }
