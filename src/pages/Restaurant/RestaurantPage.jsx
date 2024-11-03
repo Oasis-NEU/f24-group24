@@ -31,29 +31,24 @@ function RestaurantPage() {
   };
 
   return (
-    <div>
-      <h1>Restaurants</h1>
+    <div className="flex flex-col items-center p-6">
+      <h1 className="flex flex-col items-center p-6">Restaurants</h1>
 
       {/* Filter Buttons */}
-      <div>
+      <div className="flex space-x-4 mb-6">
         <button
           onClick={toggleHuskyDollars}
-          style={{
-            backgroundColor: huskyDollarsSelected ? 'orange' : 'white',
-            color: 'black',
-            border: '1px solid black',
-            marginRight: '10px',
-          }}
+          className={`px-4 py-2 border rounded ${
+            huskyDollarsSelected ? 'bg-orange-500 text-white' : 'bg-white border-black'
+          }`}
         >
           Husky Dollars
         </button>
         <button
           onClick={toggleStudentDiscount}
-          style={{
-            backgroundColor: studentDiscountSelected ? 'orange' : 'white',
-            color: 'black',
-            border: '1px solid black',
-          }}
+          className={`px-4 py-2 border rounded ${
+            studentDiscountSelected ? 'bg-orange-500 text-white' : 'bg-white border-black'
+          }`}
         >
           Student Discount
         </button>
