@@ -52,20 +52,28 @@ function RestaurantChat({ restaurantId }) {
   };
 
   return (
-    <div>
-      <h3>Chat Room</h3>
-      <div style={{ maxHeight: '200px', overflowY: 'scroll', border: '1px solid #ccc', padding: '10px' }}>
+    <div className="p-4 border rounded-lg shadow-sm bg-white mt-4">
+      <h3 className="text-xl font-semibold mb-3">Chat Room</h3>
+      <div className="max-h-48 overflow-y-scroll border p-2 mb-3 bg-gray-50 rounded">
         {messages.map((msg) => (
-          <div key={msg.id}>{msg.message}</div>
+          <div key={msg.id} className="mb-1 text-gray-800">{msg.message}</div>
         ))}
       </div>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Enter message"
-      />
-      <button onClick={handleSendMessage}>Send</button>
+      <div className="flex items-center space-x-2">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Enter message"
+          className="flex-1 p-2 border rounded"
+        />
+        <button
+          onClick={handleSendMessage}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }

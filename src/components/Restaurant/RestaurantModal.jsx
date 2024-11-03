@@ -3,17 +3,27 @@ import RestaurantChat from './RestaurantChat';
 
 function RestaurantModal({ restaurant, onClose }) {
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-      <div style={{ position: 'relative', margin: '50px auto', padding: '20px', width: '80%', backgroundColor: '#fff', borderRadius: '8px' }}>
-        <button onClick={onClose} style={{ position: 'absolute', top: '10px', right: '10px' }}>Close</button>
-        <h2>{restaurant.name}</h2>
-        <p><strong>Cuisine:</strong> {restaurant.cuisine}</p>
-        <ul>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="relative bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+        >
+          Close
+        </button>
+
+        {/* Restaurant Details */}
+        <h2 className="text-2xl font-bold mb-3">{restaurant.name}</h2>
+        <p className="text-gray-600 mb-2"><strong>Cuisine:</strong> {restaurant.cuisine}</p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
           {restaurant.menu.map((menuItem, index) => (
-            <li key={index}>{menuItem.item} - ${menuItem.price.toFixed(2)}</li>
+            <li key={index} className="text-gray-800">
+              {menuItem.item} - ${menuItem.price.toFixed(2)}
+            </li>
           ))}
         </ul>
-        
+
         {/* Chat Room */}
         <RestaurantChat restaurantId={restaurant.id} />
       </div>
