@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import RestaurantList from '../../components/Restaurant/RestaurantList';
-import RestaurantModal from '../../components/Restaurant/RestaurantModal';
+import React, { useState } from "react";
+import RestaurantList from "../../components/Restaurant/RestaurantList";
+import RestaurantModal from "../../components/Restaurant/RestaurantModal";
 
 function RestaurantPage() {
   const [huskyDollarsSelected, setHuskyDollarsSelected] = useState(false);
   const [studentDiscountSelected, setStudentDiscountSelected] = useState(false);
-  const [selectedRestaurant, setSelectedRestaurant] = useState(null)
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   // Toggle Husky Dollars filter
   const toggleHuskyDollars = () => {
@@ -31,15 +31,20 @@ function RestaurantPage() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <h1 className="flex flex-col items-center p-6">Restaurants</h1>
+    <div
+      className="flex flex-col items-center p-6"
+      style={{ backgroundColor: "#f1efef" }}
+    >
+      <h1 className="text-4xl font-bold mb-6">Restaurants</h1>
 
       {/* Filter Buttons */}
       <div className="flex space-x-4 mb-6">
         <button
           onClick={toggleHuskyDollars}
           className={`px-4 py-2 border rounded ${
-            huskyDollarsSelected ? 'bg-orange-500 text-white' : 'bg-white border-black'
+            huskyDollarsSelected
+              ? "bg-orange-500 text-white"
+              : "bg-white border-black"
           }`}
         >
           Husky Dollars
@@ -47,7 +52,9 @@ function RestaurantPage() {
         <button
           onClick={toggleStudentDiscount}
           className={`px-4 py-2 border rounded ${
-            studentDiscountSelected ? 'bg-orange-500 text-white' : 'bg-white border-black'
+            studentDiscountSelected
+              ? "bg-orange-500 text-white"
+              : "bg-white border-black"
           }`}
         >
           Student Discount

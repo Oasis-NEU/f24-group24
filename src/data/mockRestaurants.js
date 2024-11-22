@@ -1,3 +1,5 @@
+import mock from "../assets/lego_logo.png"
+
 const mockRestaurants = [
     {
       id: 1,
@@ -8,6 +10,8 @@ const mockRestaurants = [
         { item: "Veggie Stir-Fry Udon", price: 9.99 },
         { item: "Pork Belly Bao", price: 7.49 }
       ],
+      image: mock,
+      images: [mock, mock, mock],
       acceptsHuskyDollars: true,
       hasStudentDiscount: "10% off with student ID"
     },
