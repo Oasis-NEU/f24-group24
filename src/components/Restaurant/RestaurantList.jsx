@@ -1,42 +1,10 @@
-import React, { useEffect, useState } from "react";
-import RestaurantDetails from "./RestaurantDetails";
-import mockRestaurants from "../../data/mockRestaurants";
+import React from "react";
 
-function RestaurantList({
-  huskyDollarsSelected,
-  studentDiscountSelected,
-  onRestaurantClick,
-}) {
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  useEffect(() => {
-    const filterRestaurants = () => {
-      let filtered = mockRestaurants;
-
-      // Apply Husky Dollars filter
-      if (huskyDollarsSelected) {
-        filtered = filtered.filter(
-          (restaurant) => restaurant.acceptsHuskyDollars
-        );
-      }
-
-      // Apply Student Discount filter
-      if (studentDiscountSelected) {
-        filtered = filtered.filter(
-          (restaurant) => restaurant.hasStudentDiscount !== "None"
-        );
-      }
-
-      setFilteredRestaurants(filtered);
-    };
-
-    filterRestaurants();
-  }, [huskyDollarsSelected, studentDiscountSelected]);
-
+function RestaurantList({ restaurants, onRestaurantClick }) {
   return (
     <div className="grid gap-6 w-full max-w-4xl mx-auto">
-      {filteredRestaurants.length > 0 ? (
-        filteredRestaurants.map((restaurant) => (
+      {restaurants.length > 0 ? (
+        restaurants.map((restaurant) => (
           <div
             key={restaurant.id}
             className="flex flex-col sm:flex-row items-center sm:items-start p-4 border rounded-lg shadow-lg cursor-pointer hover:shadow-xl bg-white"
