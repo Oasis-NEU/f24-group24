@@ -1,84 +1,110 @@
 import React, { useState } from "react";
-import logoplaceholder from "../../assets/logo-placeholder.png";
+import logo from "../../assets/ratemyplatelogo.webp";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-orange-500 px-4 w-full pr-4">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center w-full py-4">
-        <nav className="hidden md:flex space-x-4 justify-start">
-          <Link to="/" className="text-white hover:text-gray-300 transition">
+    <div className="bg-[#ff4439] shadow-md relative w-full ">
+      {/* Desktop & Mobile Nav */}
+      <div className="flex items-center justify-between px-4 py-3 md:py-4 md:px-8">
+        {/* Logo */}
+        <div>
+          <img className="h-20 md:h-24 object-contain" src={logo} alt="Logo" />
+        </div>
+
+        {/* Desktop Links */}
+        <nav className="hidden md:flex space-x-8">
+          <Link
+            to="/"
+            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+          >
             Home
           </Link>
           <Link
             to="/restaurants"
-            className="text-white hover:text-gray-300 transition"
+            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
           >
             Restaurants
           </Link>
           <Link
             to="/about"
-            className="text-white hover:text-gray-300 transition"
+            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
           >
             About
           </Link>
         </nav>
 
-        {/* Logo */}
-        <div className="flex justify-center">
-          <img className="max-h-16 h-auto" src={logoplaceholder} alt="Logo" />
-        </div>
-
-        {/* Hamburger Icon for Mobile */}
-        <div className="flex justify-end md:hidden col-start-3">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-            {/* Hamburger Icon */}
+        {/* Hamburger Menu for Mobile */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-[#fbfbfb] md:hidden focus:outline-none"
+        >
+          {isOpen ? (
             <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h16"
-              ></path>
+              />
             </svg>
-          </button>
-        </div>
+          )}
+        </button>
       </div>
 
-      {/* Dropdown Menu for Mobile */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center space-y-2 mt-2 bg-orange-500">
+      {/* Mobile Dropdown */}
+      <div
+        className={`md:hidden bg-[#ff4439] overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+          isOpen ? "max-h-40" : "max-h-0"
+        }`}
+      >
+        <div className="flex flex-col items-center py-2 space-y-2">
           <Link
             to="/"
-            className="text-white hover:text-gray-300 transition"
+            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link
             to="/restaurants"
-            className="text-white hover:text-gray-300 transition"
+            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
             onClick={() => setIsOpen(false)}
           >
             Restaurants
           </Link>
           <Link
             to="/about"
-            className="text-white hover:text-gray-300 transition"
+            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
             onClick={() => setIsOpen(false)}
           >
             About
           </Link>
         </div>
-      )}
+      </div>
     </div>
   );
 };
