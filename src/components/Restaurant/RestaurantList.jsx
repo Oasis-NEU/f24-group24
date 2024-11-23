@@ -27,7 +27,7 @@ function RestaurantList({ restaurants, onRestaurantClick, userLocation }) {
       <div className="w-full h-96 mb-6">
         <MapContainer
           center={mapCenter}
-          zoom={13}
+          zoom={16}
           className="map-container w-full h-full rounded-lg shadow-lg"
           scrollWheelZoom={true}
         >
