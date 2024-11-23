@@ -59,7 +59,7 @@ function RestaurantList({
                 <strong>Cuisine:</strong> {restaurant.cuisine}
               </p>
               <p className="text-gray-600">
-                <strong>Accepts Husky Dollars:</strong>{" "}
+                <strong>Accepts Dining Dollars:</strong>{" "}
                 {restaurant.acceptsHuskyDollars ? (
                   <span className="text-green-600 font-bold">Yes</span>
                 ) : (

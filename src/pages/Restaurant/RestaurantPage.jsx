@@ -41,20 +41,20 @@ function RestaurantPage() {
       <div className="flex space-x-4 mb-6">
         <button
           onClick={toggleHuskyDollars}
-          className={`px-4 py-2 border rounded ${
+          className={`px-4 py-2 border rounded transition duration-200 ${
             huskyDollarsSelected
-              ? "bg-orange-500 text-white"
-              : "bg-white border-black"
+              ? "bg-[#39b2ff] text-white border-[#00426c]"
+              : "bg-white text-[#00426c] border-black hover:bg-[#9fdaff] hover:border-[#00426c]"
           }`}
         >
-          Husky Dollars
+          Dining Dollars
         </button>
         <button
           onClick={toggleStudentDiscount}
-          className={`px-4 py-2 border rounded ${
+          className={`px-4 py-2 border rounded transition duration-200 ${
             studentDiscountSelected
-              ? "bg-orange-500 text-white"
-              : "bg-white border-black"
+              ? "bg-[#39b2ff] text-white border-[#00426c]"
+              : "bg-white text-[#00426c] border-black hover:bg-[#9fdaff] hover:border-[#00426c]"
           }`}
         >
           Student Discount

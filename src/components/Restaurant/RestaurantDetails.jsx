@@ -27,7 +27,7 @@ function RestaurantDetails({ restaurant }) {
       {/* Restaurant Information */}
       <div className="mb-6">
         <p className="text-gray-700 mb-2">
-          <strong>Accepts Husky Dollars:</strong>{" "}
+          <strong>Accepts Dining Dollars:</strong>{" "}
           {restaurant.acceptsHuskyDollars ? (
             <span className="text-green-600 font-bold">Yes</span>
           ) : (

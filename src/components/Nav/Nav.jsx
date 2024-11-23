@@ -6,7 +6,7 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-[#ff4439] shadow-md relative w-full ">
+    <div className="bg-[#ff4439] shadow-md relative w-full">
       {/* Desktop & Mobile Nav */}
       <div className="flex items-center justify-between px-4 py-3 md:py-4 md:px-8">
         {/* Logo */}
@@ -18,19 +18,19 @@ const Nav = () => {
         <nav className="hidden md:flex space-x-8">
           <Link
             to="/"
-            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg md:text-xl text-[#fbfbfb] font-semibold transition relative hover:text-[#6cc6ff] hover:after:w-full after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#6cc6ff] after:transition-all after:duration-300"
           >
             Home
           </Link>
           <Link
             to="/restaurants"
-            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg md:text-xl text-[#fbfbfb] font-semibold transition relative hover:text-[#6cc6ff] hover:after:w-full after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#6cc6ff] after:transition-all after:duration-300"
           >
             Restaurants
           </Link>
           <Link
             to="/about"
-            className="text-lg md:text-xl text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg md:text-xl text-[#fbfbfb] font-semibold transition relative hover:text-[#6cc6ff] hover:after:w-full after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#6cc6ff] after:transition-all after:duration-300"
           >
             About
           </Link>
@@ -84,21 +84,21 @@ const Nav = () => {
         <div className="flex flex-col items-center py-2 space-y-2">
           <Link
             to="/"
-            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg text-[#fbfbfb] font-semibold transition hover:text-[#6cc6ff]"
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link
             to="/restaurants"
-            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg text-[#fbfbfb] font-semibold transition hover:text-[#6cc6ff]"
             onClick={() => setIsOpen(false)}
           >
             Restaurants
           </Link>
           <Link
             to="/about"
-            className="text-lg text-[#fbfbfb] hover:text-[#ffa49f] font-semibold transition"
+            className="text-lg text-[#fbfbfb] font-semibold transition hover:text-[#6cc6ff]"
             onClick={() => setIsOpen(false)}
           >
             About
