@@ -40,16 +40,28 @@ function RestaurantList({ restaurants, onRestaurantClick, userLocation }) {
               {/* User Marker */}
               <Marker
                 position={[userLocation.lat, userLocation.lng]}
-                icon={customIcon}
+                icon={
+                  new L.Icon({
+                    iconUrl:
+                      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png", // Replace this with your desired color or a custom image
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowUrl:
+                      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+                    shadowSize: [41, 41],
+                  })
+                }
               >
                 <Popup>You are here</Popup>
               </Marker>
+
               {/* Circle Around User Location */}
               <Circle
                 center={[userLocation.lat, userLocation.lng]}
                 radius={userLocation.accuracy || 100} // Accuracy radius or default
-                color="#39b2ff" // Secondary Dark
-                fillColor="#9fdaff" // Secondary Light for the fill color
+                color="#ff4439" // Primary Dark for the circle outline
+                fillColor="#ffa49f" // Primary Light for the fill color
                 fillOpacity={0.2}
               />
             </>
