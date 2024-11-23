@@ -14,6 +14,8 @@ function RestaurantChat({ restaurantId }) {
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!restaurantId) {
@@ -35,8 +37,20 @@ function RestaurantChat({ restaurantId }) {
     return () => unsubscribe();
   }, [restaurantId]);
 
+  const validateInputs = () => {
+    const newErrors = {};
+    if (message.trim() === "") {
+      newErrors.message = "Comment is required";
+    }
+    if (rating === 0) {
+      newErrors.rating = "Rating is required";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSendMessage = async () => {
-    if (message.trim() !== "" && rating > 0 && restaurantId) {
+    if (validateInputs()) {
       const chatRef = collection(
         firestore,
         "restaurants",
@@ -44,7 +58,7 @@ function RestaurantChat({ restaurantId }) {
         "chat"
       );
       await addDoc(chatRef, {
-        name: name || "Anonymous", // Default to "Anonymous" if no name is provided
+        name: name || "Anonymous",
         message,
         rating,
         timestamp: serverTimestamp(),
@@ -52,6 +66,9 @@ function RestaurantChat({ restaurantId }) {
       setName("");
       setMessage("");
       setRating(0);
+      setErrors({});
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2000);
     }
   };
 
@@ -60,22 +77,31 @@ function RestaurantChat({ restaurantId }) {
       {/* Review Submission Box */}
       <div className="p-4 border rounded-lg shadow-md bg-white">
         <h3 className="text-xl font-semibold mb-4">Share Your Thoughts</h3>
-        <p className="text-sm text-gray-500 mb-3">Name is optional.</p>
-
         <div className="space-y-3">
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Your name (optional)"
-            className="w-full p-2 border rounded"
+            className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
+              errors.name
+                ? "border-red-500"
+                : "focus:ring-[#6cc6ff] border-gray-300"
+            }`}
           />
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Enter your comment"
-            className="w-full p-2 border rounded"
+            className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
+              errors.message
+                ? "border-red-500"
+                : "focus:ring-[#6cc6ff] border-gray-300"
+            }`}
           />
+          {errors.message && (
+            <p className="text-red-500 text-sm">{errors.message}</p>
+          )}
           <div className="flex items-center space-x-2">
             <label className="text-gray-700">Rate:</label>
             <div className="flex items-center">
@@ -92,11 +118,19 @@ function RestaurantChat({ restaurantId }) {
               ))}
             </div>
           </div>
+          {errors.rating && (
+            <p className="text-red-500 text-sm">{errors.rating}</p>
+          )}
           <button
             onClick={handleSendMessage}
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className={`w-full py-2 rounded transition-all duration-300 ${
+              success
+                ? "bg-green-500 text-white cursor-default"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+            }`}
+            disabled={success}
           >
-            Submit
+            {success ? "Message Posted!" : "Submit"}
           </button>
         </div>
       </div>
