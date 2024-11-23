@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.modal {
+    z-index: 1050; /* Higher than Leaflet tiles */
+  }

@@ -36,7 +36,7 @@ function RestaurantModal({ restaurant, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
       onClick={handleOverlayClick}
     >
       <div

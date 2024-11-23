@@ -132,6 +132,7 @@ function RestaurantPage() {
       <RestaurantList
         restaurants={sortedRestaurants}
         onRestaurantClick={handleRestaurantClick}
+        userLocation={userLocation}
       />
 
       {/* Restaurant Modal */}

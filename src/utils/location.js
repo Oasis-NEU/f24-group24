@@ -1,16 +1,21 @@
-export const getUserLocation = () =>
-    new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject("Geolocation is not supported by your browser.");
-      } else {
+export async function getUserLocation() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          (position) =>
+          (position) => {
             resolve({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
-            }),
-          (error) => reject(error.message)
+              accuracy: position.coords.accuracy,
+            });
+          },
+          (error) => {
+            reject(error); // Reject the promise if there's an error
+          }
         );
+      } else {
+        reject(new Error("Geolocation is not supported by this browser."));
       }
     });
+  }
   
