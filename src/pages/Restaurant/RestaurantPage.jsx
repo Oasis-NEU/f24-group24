@@ -32,7 +32,7 @@ function RestaurantPage() {
 
   return (
     <div
-      className="flex flex-col items-center p-6"
+      className="flex flex-col items-center px-4 sm:px-6 md:px-10 py-6"
       style={{ backgroundColor: "#f1efef" }}
     >
       <h1 className="text-4xl font-bold mb-6">Restaurants</h1>
