@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "../../services/firebase";
+import { useAuth } from "../../contexts/AuthContext";
 import {
   collection,
   addDoc,
@@ -8,14 +9,17 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
 
 function RestaurantChat({ restaurantId }) {
+  const { currentUser } = useAuth();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [messages, setMessages] = useState([]);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!restaurantId) {
@@ -75,65 +79,79 @@ function RestaurantChat({ restaurantId }) {
   return (
     <div className="space-y-6">
       {/* Review Submission Box */}
-      <div className="p-4 border rounded-lg shadow-md bg-white">
-        <h3 className="text-xl font-semibold mb-4">Share Your Thoughts</h3>
-        <div className="space-y-3">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Your name (optional)"
-            className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
-              errors.name
-                ? "border-red-500"
-                : "focus:ring-[#6cc6ff] border-gray-300"
-            }`}
-          />
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Enter your comment"
-            className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
-              errors.message
-                ? "border-red-500"
-                : "focus:ring-[#6cc6ff] border-gray-300"
-            }`}
-          />
-          {errors.message && (
-            <p className="text-red-500 text-sm">{errors.message}</p>
-          )}
-          <div className="flex items-center space-x-2">
-            <label className="text-gray-700">Rate:</label>
-            <div className="flex items-center">
-              {Array.from({ length: 5 }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setRating(i + 1)}
-                  className={`text-2xl ${
-                    i < rating ? "text-yellow-500" : "text-gray-300"
-                  }`}
-                >
-                  &#9733;
-                </button>
-              ))}
+      {currentUser ? (
+        <div className="p-4 border rounded-lg shadow-md bg-white">
+          <h3 className="text-xl font-semibold mb-4">Share Your Thoughts</h3>
+          <div className="space-y-3">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name (optional)"
+              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
+                errors.name
+                  ? "border-red-500"
+                  : "focus:ring-[#6cc6ff] border-gray-300"
+              }`}
+            />
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Enter your comment"
+              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
+                errors.message
+                  ? "border-red-500"
+                  : "focus:ring-[#6cc6ff] border-gray-300"
+              }`}
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm">{errors.message}</p>
+            )}
+            <div className="flex items-center space-x-2">
+              <label className="text-gray-700">Rate:</label>
+              <div className="flex items-center">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setRating(i + 1)}
+                    className={`text-2xl ${
+                      i < rating ? "text-yellow-500" : "text-gray-300"
+                    }`}
+                  >
+                    &#9733;
+                  </button>
+                ))}
+              </div>
             </div>
+            {errors.rating && (
+              <p className="text-red-500 text-sm">{errors.rating}</p>
+            )}
+            <button
+              onClick={handleSendMessage}
+              className={`w-full py-2 rounded transition-all duration-300 ${
+                success
+                  ? "bg-green-500 text-white cursor-default"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+              disabled={success}
+            >
+              {success ? "Message Posted!" : "Submit"}
+            </button>
           </div>
-          {errors.rating && (
-            <p className="text-red-500 text-sm">{errors.rating}</p>
-          )}
-          <button
-            onClick={handleSendMessage}
-            className={`w-full py-2 rounded transition-all duration-300 ${
-              success
-                ? "bg-green-500 text-white cursor-default"
-                : "bg-blue-500 text-white hover:bg-blue-600"
-            }`}
-            disabled={success}
-          >
-            {success ? "Message Posted!" : "Submit"}
-          </button>
         </div>
-      </div>
+      ) : (
+        <div className="p-4 border rounded-lg shadow-md bg-white">
+          <h3 className="text-xl font-semibold mb-4 text-gray-700">
+            Log in to leave a comment.
+          </h3>
+          <Link
+            to="/auth"
+            className="block text-center py-2 px-4 bg-[#39b2ff] text-white font-semibold rounded hover:bg-[#00426c] transition duration-300"
+          >
+            Log In
+          </Link>
+        </div>
+      )}
 
       {/* Comments Section */}
       <div className="p-4 border rounded-lg shadow-md bg-white">

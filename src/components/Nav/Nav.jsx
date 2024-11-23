@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import logo from "../../assets/ratemyplatelogo.webp";
 import { Link } from "react-router-dom";
+import logo from "../../assets/ratemyplatelogo.webp";
+import { FaUserCircle } from "react-icons/fa";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="bg-[#ff4439] shadow-md relative w-full">
-      {/* Desktop & Mobile Nav */}
+      {/* Navbar Container */}
       <div className="flex items-center justify-between px-4 py-3 md:py-4 md:px-8">
         {/* Logo */}
-        <div>
+        <div className="flex-shrink-0">
           <img className="h-20 md:h-24 object-contain" src={logo} alt="Logo" />
         </div>
 
-        {/* Desktop Links */}
-        <nav className="hidden md:flex space-x-8">
+        {/* Centered Links */}
+        <nav className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
           <Link
             to="/"
             className="text-lg md:text-xl text-[#fbfbfb] font-semibold transition relative hover:text-[#6cc6ff] hover:after:w-full after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#6cc6ff] after:transition-all after:duration-300"
@@ -36,43 +37,15 @@ const Nav = () => {
           </Link>
         </nav>
 
-        {/* Hamburger Menu for Mobile */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-[#fbfbfb] md:hidden focus:outline-none"
-        >
-          {isOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
-        </button>
+        {/* User Icon */}
+        <div className="flex-shrink-0">
+          <Link
+            to="/auth"
+            className="text-[#fbfbfb] hover:text-[#6cc6ff] transition"
+          >
+            <FaUserCircle size={40} /> {/* Increased icon size */}
+          </Link>
+        </div>
       </div>
 
       {/* Mobile Dropdown */}
@@ -102,6 +75,13 @@ const Nav = () => {
             onClick={() => setIsOpen(false)}
           >
             About
+          </Link>
+          <Link
+            to="/auth"
+            className="text-lg text-[#fbfbfb] font-semibold transition hover:text-[#6cc6ff]"
+            onClick={() => setIsOpen(false)}
+          >
+            <FaUserCircle size={24} />
           </Link>
         </div>
       </div>
