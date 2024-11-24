@@ -46,6 +46,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.341392678114865, lng: -71.0876085149623 },
     hours: "Usually 10 AM - 11 PM, Sunday 10 AM - 10 PM",
+    googleMapsLink: "https://maps.app.goo.gl/jaBHeVmd8Uwb1YiA9",
   },
   {
     id: 2,
@@ -62,6 +63,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.342275661357824, lng: -71.08616080858624 },
     hours: "Always 8 AM - 3 AM",
+    googleMapsLink: "https://maps.app.goo.gl/HyZj2rm3fgDC8sUC7",
   },
   {
     id: 3,
@@ -77,6 +79,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.34118058555729, lng: -71.08770546145126 },
     hours: "Always 10 AM - 11 PM",
+    googleMapsLink: "https://maps.app.goo.gl/aBzUysEwYEi75N5X6",
   },
   {
     id: 4,
@@ -93,6 +96,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.34194516250193, lng: -71.08664987947552 },
     hours: "Usually 6 AM - 10 PM, Sunday 7 AM - 10 PM",
+    googleMapsLink: "https://maps.app.goo.gl/5xxB5jNqeKqUj8zu6",
   },
   {
     id: 5,
@@ -109,6 +113,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.34052106435441, lng: -71.09027454007543 },
     hours: "Always 7 AM - 1 AM",
+    googleMapsLink: "https://maps.app.goo.gl/tszZGdfaqQB2myaY9",
   },
   {
     id: 6,
@@ -125,6 +130,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.33755334781228, lng: -71.09233670677513 },
     hours: "Always 7 AM - 12 AM",
+    googleMapsLink: "https://maps.app.goo.gl/jVqphspkSXUqk8z48",
   },
   {
     id: 7,
@@ -141,6 +147,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.34087201212727, lng: -71.08820355886611 },
     hours: "Always 11 AM - 11 PM",
+    googleMapsLink: "https://maps.app.goo.gl/p1TNCWgmkoAKLULi7",
   },
   {
     id: 8,
@@ -157,6 +164,7 @@ const mockRestaurants = [
     hasStudentDiscount: "10% off",
     location: { lat: 42.34098544372129, lng: -71.08809443975181 },
     hours: "Sunday - Thursday 11 AM - 12 PM, Friday & Saturday 11 AM - 2 AM",
+    googleMapsLink: "https://maps.app.goo.gl/QATbqzSLV7DcxpEv6",
   },
   {
     id: 9,
@@ -173,6 +181,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.3411684910107, lng: -71.08761745963488 },
     hours: "Always 11 AM - 10 PM",
+    googleMapsLink: "https://maps.app.goo.gl/RKJ5wxJaJrSgUKrH7",
   },
   {
     id: 10,
@@ -189,6 +198,7 @@ const mockRestaurants = [
     hasStudentDiscount: "None",
     location: { lat: 42.34131861296658, lng: -71.08735645911933 },
     hours: "Always 11 AM - 9 PM",
+    googleMapsLink: "https://maps.app.goo.gl/CkSFRCdR6Q7hrfaj7",
   },
 ];
 

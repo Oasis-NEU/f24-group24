@@ -46,7 +46,7 @@ function RestaurantDetails({ restaurant }) {
       <hr className="border-gray-300 mb-6" />
 
       {/* Menu Section */}
-      <div>
+      <div className="mb-6">
         <h3 className="text-2xl font-semibold text-gray-800 mb-4">
           Popular Items
         </h3>
@@ -57,6 +57,18 @@ function RestaurantDetails({ restaurant }) {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Google Maps Link */}
+      <div className="text-center">
+        <a
+          href={restaurant.googleMapsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-[#39b2ff] text-white font-semibold rounded-lg shadow-md hover:bg-[#00426c] transition"
+        >
+          View on Google Maps
+        </a>
       </div>
     </div>
   );

@@ -1,4 +1,7 @@
 import React from "react";
+import dylan from "../../assets/dylan.jpg";
+import kevin from "../../assets/kevin.jpg";
+import ash from "../../assets/ash.jpg";
 
 const Aboutpage = () => {
   return (
@@ -37,13 +40,12 @@ const Aboutpage = () => {
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
           {/* Dylan */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div
-              className="h-40 bg-[#6cc6ff] rounded-lg mb-4"
-              style={{
-                background: "linear-gradient(135deg, #6cc6ff, #39b2ff)",
-              }}
-            >
-              {/* Placeholder for Developer Image */}
+            <div className="h-40 w-full rounded-lg mb-4">
+              <img
+                src={dylan}
+                alt="Dylan Anctil"
+                className="object-cover h-full w-full rounded-lg"
+              />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
               Dylan Anctil
@@ -57,13 +59,12 @@ const Aboutpage = () => {
 
           {/* Kevin */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div
-              className="h-40 bg-[#6cc6ff] rounded-lg mb-4"
-              style={{
-                background: "linear-gradient(135deg, #6cc6ff, #39b2ff)",
-              }}
-            >
-              {/* Placeholder for Developer Image */}
+            <div className="h-40 w-full rounded-lg mb-4">
+              <img
+                src={kevin}
+                alt="Kevin Matula"
+                className="object-cover h-full w-full rounded-lg"
+              />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
               Kevin Matula
@@ -77,13 +78,12 @@ const Aboutpage = () => {
 
           {/* Ashvath */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div
-              className="h-40 bg-[#6cc6ff] rounded-lg mb-4"
-              style={{
-                background: "linear-gradient(135deg, #6cc6ff, #39b2ff)",
-              }}
-            >
-              {/* Placeholder for Developer Image */}
+            <div className="h-40 w-full rounded-lg mb-4">
+              <img
+                src={ash}
+                alt="Ashvath Srinivasan Govindamoorthy"
+                className="object-cover h-full w-full rounded-lg"
+              />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
               Ashvath Srinivasan Govindamoorthy
