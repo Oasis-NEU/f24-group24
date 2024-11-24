@@ -34,9 +34,12 @@ function RestaurantDetails({ restaurant }) {
             <span className="text-red-600 font-bold">No</span>
           )}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700 mb-2">
           <strong>Student Discount:</strong>{" "}
           <span className="text-blue-600">{restaurant.hasStudentDiscount}</span>
+        </p>
+        <p className="text-gray-700">
+          <strong>Hours:</strong> <span>{restaurant.hours}</span>
         </p>
       </div>
 
@@ -50,8 +53,7 @@ function RestaurantDetails({ restaurant }) {
         <ul className="list-disc pl-5 space-y-3">
           {restaurant.menu.map((menuItem, index) => (
             <li key={index} className="text-gray-800">
-              <span className="font-semibold">{menuItem.item}</span> - $
-              {menuItem.price.toFixed(2)}
+              <span className="font-semibold">{menuItem.item}</span>
             </li>
           ))}
         </ul>
