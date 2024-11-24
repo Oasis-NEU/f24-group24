@@ -28,7 +28,7 @@ function RestaurantChat({ restaurantId }) {
     }
 
     const chatRef = collection(firestore, "restaurants", restaurantId, "chat");
-    const chatQuery = query(chatRef, orderBy("timestamp"));
+    const chatQuery = query(chatRef, orderBy("timestamp", "desc")); // Descending order
 
     const unsubscribe = onSnapshot(chatQuery, (snapshot) => {
       const messagesData = snapshot.docs.map((doc) => ({
