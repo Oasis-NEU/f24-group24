@@ -36,11 +36,11 @@ function RestaurantModal({ restaurant, onClose }) {
 
   return (
     <div
-      className="modal fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center"
+      className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4"
       onClick={handleOverlayClick}
     >
       <div
-        className={`relative bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl max-h-[95vh] overflow-y-auto transform transition-all duration-500 ease-in-out mt-8 sm:mt-16 mb-8 sm:mb-16${
+        className={`relative bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl max-h-[95vh] overflow-y-auto transform transition-all duration-500 ease-in-out mt-8 mb-8 sm:mt-16 sm:mb-16 ${
           isVisible
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-5 scale-95"
