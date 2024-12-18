@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import RestaurantList from "../../components/Restaurant/RestaurantList";
 import RestaurantModal from "../../components/Restaurant/RestaurantModal";
 import { getUserLocation } from "../../utils/location";
@@ -10,9 +12,10 @@ function RestaurantPage() {
   const [studentDiscountSelected, setStudentDiscountSelected] = useState(false);
   const [sortByNearest, setSortByNearest] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [restaurants, setRestaurants] = useState(mockRestaurants); // Initial restaurant data
+  const [restaurants, setRestaurants] = useState(mockRestaurants);
   const [sortedRestaurants, setSortedRestaurants] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState([42.3382, -71.0877]);
 
   // Fetch user location
   useEffect(() => {
@@ -20,6 +23,7 @@ function RestaurantPage() {
       try {
         const location = await getUserLocation();
         setUserLocation(location);
+        setMapCenter([location.lat, location.lng]);
       } catch (error) {
         console.error("Error retrieving user location:", error);
       }
@@ -80,15 +84,27 @@ function RestaurantPage() {
       <h1 className="text-4xl font-bold mb-6 text-[#00426c]">Restaurants</h1>
 
       {/* Display User Location */}
-      <div className="mb-4 text-[#292423]">
+      <div className="mb-4 text-[#292423] flex items-center">
         {userLocation ? (
-          <p>
-            Your Location:{" "}
-            <span className="font-semibold">
-              Lat: {userLocation.lat.toFixed(2)}, Lng:{" "}
-              {userLocation.lng.toFixed(2)}
-            </span>
-          </p>
+          <>
+            <button
+              onClick={() => setMapCenter([userLocation.lat, userLocation.lng])}
+              className="mr-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-all"
+              title="Center to My Location"
+            >
+              <FontAwesomeIcon
+                icon={faLocationArrow}
+                className="text-blue-500 w-6 h-6"
+              />
+            </button>
+            <p>
+              Your Location:{" "}
+              <span className="font-semibold">
+                Lat: {userLocation.lat.toFixed(2)}, Lng:{" "}
+                {userLocation.lng.toFixed(2)}
+              </span>
+            </p>
+          </>
         ) : (
           <p>Fetching your location...</p>
         )}
@@ -133,6 +149,8 @@ function RestaurantPage() {
         restaurants={sortedRestaurants}
         onRestaurantClick={handleRestaurantClick}
         userLocation={userLocation}
+        mapCenter={mapCenter}
+        setMapCenter={setMapCenter}
       />
 
       {/* Restaurant Modal */}

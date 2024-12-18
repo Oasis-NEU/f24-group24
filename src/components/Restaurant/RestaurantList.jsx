@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Circle,
+  useMap,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -11,16 +18,25 @@ const customIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-function RestaurantList({ restaurants, onRestaurantClick, userLocation }) {
-  const defaultLocation = [42.34, -71.09]; // Northeastern University, Stetson East Hall
-  const [mapCenter, setMapCenter] = useState(defaultLocation);
-
+// Utility to dynamically adjust map center using flyTo
+function FlyToCenter({ center }) {
+  const map = useMap();
   useEffect(() => {
-    if (userLocation && userLocation.lat && userLocation.lng) {
-      setMapCenter([userLocation.lat, userLocation.lng]);
+    if (center) {
+      map.flyTo(center, 16, { duration: 1.2 }); // Smooth animation
     }
-  }, [userLocation]);
+  }, [center, map]);
 
+  return null;
+}
+
+function RestaurantList({
+  restaurants,
+  onRestaurantClick,
+  userLocation,
+  mapCenter,
+  setMapCenter,
+}) {
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Map Section */}
@@ -31,27 +47,20 @@ function RestaurantList({ restaurants, onRestaurantClick, userLocation }) {
           className="map-container w-full h-full rounded-lg shadow-lg"
           scrollWheelZoom={true}
         >
+          {/* Adjust Center Dynamically */}
+          <FlyToCenter center={mapCenter} />
+
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+
           {userLocation && (
             <>
               {/* User Marker */}
               <Marker
                 position={[userLocation.lat, userLocation.lng]}
-                icon={
-                  new L.Icon({
-                    iconUrl:
-                      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowUrl:
-                      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-                    shadowSize: [41, 41],
-                  })
-                }
+                icon={customIcon}
               >
                 <Popup>You are here</Popup>
               </Marker>
@@ -60,18 +69,26 @@ function RestaurantList({ restaurants, onRestaurantClick, userLocation }) {
               <Circle
                 center={[userLocation.lat, userLocation.lng]}
                 radius={userLocation.accuracy || 100} // Accuracy radius or default
-                color="#ff4439" // Primary Dark for the circle outline
-                fillColor="#ffa49f" // Primary Light for the fill color
+                color="#ff4439"
+                fillColor="#ffa49f"
                 fillOpacity={0.2}
               />
             </>
           )}
+
           {/* Restaurant Markers */}
           {restaurants.map((restaurant) => (
             <Marker
               key={restaurant.id}
               position={[restaurant.location.lat, restaurant.location.lng]}
               icon={customIcon}
+              eventHandlers={{
+                click: () =>
+                  setMapCenter([
+                    restaurant.location.lat,
+                    restaurant.location.lng,
+                  ]),
+              }}
             >
               <Popup>
                 <div className="text-center">
