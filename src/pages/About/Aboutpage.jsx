@@ -40,12 +40,15 @@ const Aboutpage = () => {
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
           {/* Dylan */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div className="h-40 w-full rounded-lg mb-4 overflow-hidden">
+            <div className="h-60 w-full rounded-lg mb-4 overflow-hidden">
               <img
                 src={dylan}
                 alt="Dylan Anctil"
                 className="object-cover h-full w-full rounded-lg"
-                style={{ objectPosition: "center top" }} // Move Dylan's image down
+                style={{
+                  objectPosition: "center 35px",
+                  transform: "scale(2.2)",
+                }}
               />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
@@ -60,11 +63,15 @@ const Aboutpage = () => {
 
           {/* Kevin */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div className="h-40 w-full rounded-lg mb-4 overflow-hidden">
+            <div className="h-60 w-full rounded-lg mb-4 overflow-hidden">
               <img
                 src={kevin}
                 alt="Kevin Matula"
                 className="object-cover h-full w-full rounded-lg"
+                style={{
+                  objectPosition: "center 15px",
+                  transform: "scale(1.2)",
+                }}
               />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
@@ -79,12 +86,15 @@ const Aboutpage = () => {
 
           {/* Ashvath */}
           <div className="bg-[#fbfbfb] rounded-lg shadow-md p-6 border border-[#e2dddd]">
-            <div className="h-40 w-full rounded-lg mb-4 overflow-hidden">
+            <div className="h-60 w-full rounded-lg mb-4 overflow-hidden">
               <img
                 src={ash}
                 alt="Ashvath Srinivasan Govindamoorthy"
                 className="object-cover h-full w-full rounded-lg"
-                style={{ objectPosition: "center top" }} // Move Ash's image down
+                style={{
+                  objectPosition: "center 45px",
+                  transform: "scale(1.7)",
+                }}
               />
             </div>
             <h4 className="text-xl font-bold text-[#ff4439] mb-2">
