@@ -36,20 +36,20 @@ function RestaurantModal({ restaurant, onClose }) {
 
   return (
     <div
-      className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      className="modal fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center"
       onClick={handleOverlayClick}
     >
       <div
-        className={`relative bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl max-h-[95vh] overflow-y-auto transform transition-all duration-500 ease-in-out ${
+        className={`relative bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl max-h-[95vh] overflow-y-auto transform transition-all duration-500 ease-in-out mt-8 sm:mt-16 mb-8 sm:mb-16${
           isVisible
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-5 scale-95"
         }`}
         style={{
-          clipPath: "inset(0 round 0.5rem)", // Ensures rounded corners
+          clipPath: "inset(0 round 0.5rem)", // Rounded corners w/ scroll bar
         }}
       >
-        {/* Close Button with Red X Icon */}
+        {/* Close Button */}
         <button
           onClick={triggerClose}
           className="absolute top-2 right-2 text-[#ff4439] hover:text-red-700"
