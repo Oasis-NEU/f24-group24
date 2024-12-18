@@ -12,16 +12,38 @@ function RestaurantDetails({ restaurant }) {
       </div>
 
       {/* Row of Images */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        {restaurant.images?.map((image, index) => (
-          <img
+      <div
+        className={`grid mb-6 ${
+          restaurant.images?.length === 2
+            ? "grid-cols-2 justify-center"
+            : "grid-cols-2 sm:grid-cols-3 gap-4"
+        }`}
+      >
+        {restaurant.images?.slice(0, 2).map((image, index) => (
+          <div
             key={index}
-            src={image}
-            alt={`${restaurant.name} - ${index + 1}`}
-            className="rounded-lg shadow-sm object-cover"
-            style={{ height: "150px", width: "200px" }}
-          />
+            className="flex justify-center items-center" // Ensures centering
+          >
+            <img
+              key={index}
+              src={image}
+              alt={`${restaurant.name} - ${index + 1}`}
+              className="rounded-lg shadow-sm object-cover"
+              style={{ height: "150px", width: "200px" }}
+            />
+          </div>
         ))}
+        {/* Third image only on larger screens */}
+        {restaurant.images?.[2] && (
+          <div className="hidden sm:flex justify-center items-center">
+            <img
+              src={restaurant.images[2]}
+              alt={`${restaurant.name} - 3`}
+              className="rounded-lg shadow-sm object-cover hidden sm:block"
+              style={{ height: "150px", width: "200px" }}
+            />
+          </div>
+        )}
       </div>
 
       {/* Restaurant Information */}
